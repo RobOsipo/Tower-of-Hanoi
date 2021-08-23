@@ -3,4 +3,3 @@ const testObject = {
     secondKey: `second key`,
     thirdKey: `final key`
 }
-alert(`test`)

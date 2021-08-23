@@ -1,3 +1,17 @@
 h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.rod-container {
+    background-color: aquamarine;
+    height: 50vh;
+    width: 30vh;
+    display: inline-block;
+}
+
+.rod {
+    margin: 0 auto;
+    height: 100%;
+    width: 40px;
+    background-color: burlywood;
+}

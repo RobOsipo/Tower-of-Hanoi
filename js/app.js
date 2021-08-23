@@ -3,5 +3,4 @@ const testObject = {
     secondKey: `second key`,
     thirdKey: `final key`
 }
-
-console.log(`${testObject.length}`)
+alert(`test`)

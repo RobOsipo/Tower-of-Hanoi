@@ -2,7 +2,7 @@ const rodOne = []
 const rodTwo = []
 const rodThree = []
 
-let numberOfDisks = 30
+let numberOfDisks = 64
 let diskObjects = 0
 
 //create class to easily generate disks that are trackeable and manageable
@@ -20,8 +20,8 @@ class Disk {
     }
     //set the width according to the ranking among disks
     setWidth () {
-        //I dont want it to fully extend out, only 90%. I also want it to not ever be smaller than the rod itself, so i subtract rod width from 90 and add it as a baseline.
-        this.width = ((this.rank / numberOfDisks) * 85) + 5
+        //I dont want it to fully extend out, only 90%. I also want it to not ever be smaller than the rod itself, so i subtract rod width (and a little extra for improved visual) from 90 and add it as a baseline.
+        this.width = ((this.rank / numberOfDisks) * 86) + 4
     }
     //one functione that initializes the disk and registers it with the known disk objects
     diskInitialization () {

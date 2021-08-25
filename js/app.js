@@ -1,7 +1,8 @@
-let numberOfDisks = 2
+let numberOfDisks = 3
 let diskObjects = 0
 let firstClick = true
 let targetedContainer = null
+let movesMade = 0
 
 //create class to easily generate disks that are trackeable and manageable
 class Disk {
@@ -53,27 +54,35 @@ class Disk {
 }
 
 //generate the desired number of disks
-for (let i = 0; i < numberOfDisks; i++) {
-    const aDisk = new Disk()
-    aDisk.diskInitialization()
-    aDisk.conjureDisk()
+function startPuzzle() {
+    for (let i = 0; i < numberOfDisks; i++) {
+        const aDisk = new Disk()
+        aDisk.diskInitialization()
+        aDisk.conjureDisk()
+    }
 }
+startPuzzle()
 
 //add event listeners to each disk container. doesnt need to target disks, because they can only move the topmost disk anyway
 document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
     diskContainer.addEventListener(`click`, (ev) => {
         // console.log(`click `)
+        //check if this is the first, disk selecting click
         if (firstClick === true) {
+            //mark the selected disk so the user knows something happened
             ev.currentTarget.lastChild.classList.toggle(`selected`)
+            //mark the selection in the code, so that the next click can actually perform the movement
             firstTargetedContainer = ev.currentTarget
+            //tell the code that the first click has now been made
             firstClick = false
             // console.log(`first click`)
         }
         else if (firstClick === false) {
+            //regardless of the outcome here, the selected disk should no longer be selected
             firstTargetedContainer.lastChild.classList.toggle(`selected`)
             //check for disk in new container
             if (ev.currentTarget.hasChildNodes() == true) {
-                console.log(`there is a disk here`)
+                // console.log(`there is a disk here`)
                 //check to make sure the disk being moved is smaller than the one its being put on top of
                 if (ev.currentTarget.lastChild.innerHTML > firstTargetedContainer.lastChild.innerHTML) {
                     ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
@@ -86,6 +95,7 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
             else {
                 ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
             }
+            checkWin()
             firstClick = true
         }
     }
@@ -93,6 +103,9 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
 }
 )
 
+function checkWin () {
+    document.querySelector(`#disk-container-3`)
+}
 
 // document.getElementById(`disk1`).addEventListener('click', () => {
 //     console.log(`yeah   `)
@@ -103,3 +116,16 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
 //         console.log(`click`)
 //     })
 // })
+
+document.querySelector(`button`).addEventListener(`click`, restartGame)
+function restartGame() {
+    document.querySelectorAll(`.disk`).forEach((disk) => {
+        disk.remove()
+    })
+    numberOfDisks = 3
+    diskObjects = 0
+    firstClick = true
+    targetedContainer = null
+    movesMade = 0
+    startPuzzle()
+}

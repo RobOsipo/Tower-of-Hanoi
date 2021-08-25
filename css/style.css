@@ -73,3 +73,7 @@ p {
 .selected {
     background-color: salmon;
 }
+
+.move-counter {
+    text-align: left;
+}

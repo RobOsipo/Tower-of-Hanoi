@@ -1,6 +1,7 @@
 let numberOfDisks = 3
 let diskObjects = 0
 let firstClick = true
+let targetedContainer = null
 
 //create class to easily generate disks that are trackeable and manageable
 class Disk {
@@ -47,7 +48,6 @@ class Disk {
         }
         // thisDisk.style.left = `${(100 - this.width) / 2}%` 
         //^^^ originally this is how i centered it before flexbox
-        rodOne.push(this)
         document.querySelector(`#disk-container-1`).appendChild(thisDisk)
     }
 }
@@ -62,13 +62,16 @@ for (let i = 0; i < numberOfDisks; i++) {
 //add event listeners to each disk container. doesnt need to target disks, because they can only move the topmost disk anyway
 document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
     if (firstClick === true) {
-        diskContainer.addEventListener(`click`, firstDiskClick())
+        diskContainer.addEventListener(`click`, (ev) => {
+            ev.currentTarget.lastChild.classList.toggle(`selected`)
+            targetedContainer = ev.currentTarget
+        })
         firstClick = false
     }
     else if (firstClick === false) {
-        diskContainer.addEventListener(`click`, secondClick())
+        diskContainer.addEventListener(`click`, (ev) => {
+            ev.currentTarget.appendChild(targetedContainer.lastChild)
+        })
         firstClick = true
     }
 })
-
-//make function that allows for disk to be moved

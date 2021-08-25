@@ -59,33 +59,33 @@ for (let i = 0; i < numberOfDisks; i++) {
     aDisk.conjureDisk()
 }
 
-// //add event listeners to each disk container. doesnt need to target disks, because they can only move the topmost disk anyway
-// document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
-//     diskContainer.addEventListener(`click`, (ev) => {
-//         console.log(`click `)
-//         if (firstClick === true) {
-//             ev.currentTarget.lastChild.classList.toggle(`selected`)
-//             targetedContainer = ev.currentTarget
-//             firstClick = false
-//             console.log(`first click`)
-//         }
-//         else if (firstClick === false) {
-//             ev.currentTarget.lastChild.classList.toggle(`selected`)
-//             ev.currentTarget.appendChild(targetedContainer.lastChild)
-//             firstClick = true
-//         }
-//     }
-//     )
-// }
-// )
+//add event listeners to each disk container. doesnt need to target disks, because they can only move the topmost disk anyway
+document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
+    diskContainer.addEventListener(`click`, (ev) => {
+        // console.log(`click `)
+        if (firstClick === true) {
+            ev.currentTarget.lastChild.classList.toggle(`selected`)
+            targetedContainer = ev.currentTarget
+            firstClick = false
+            // console.log(`first click`)
+        }
+        else if (firstClick === false) {
+            targetedContainer.lastChild.classList.toggle(`selected`)
+            ev.currentTarget.appendChild(targetedContainer.lastChild)
+            firstClick = true
+        }
+    }
+    )
+}
+)
 
 
-document.getElementById(`disk1`).addEventListener('click', () => {
-    console.log(`yeah   `)
-})
+// document.getElementById(`disk1`).addEventListener('click', () => {
+//     console.log(`yeah   `)
+// })
 
-document.querySelectorAll(`button`).forEach((button) => {
-    button.addEventListener(`click`, () => {
-        console.log(`click`)
-    })
-})
+// document.querySelectorAll(`button`).forEach((button) => {
+//     button.addEventListener(`click`, () => {
+//         console.log(`click`)
+//     })
+// })

@@ -46,3 +46,9 @@ h1 {
     flex-direction: column-reverse;
     align-items: center;
 }
+
+p {
+    /* i dont want this to be seen, so i make it size 0 and make it not interfere with organization of other elements */
+    font-size: 0;
+    position: absolute;
+}

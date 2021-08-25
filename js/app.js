@@ -1,9 +1,6 @@
-const rodOne = []
-const rodTwo = []
-const rodThree = []
-
-let numberOfDisks = 64
+let numberOfDisks = 3
 let diskObjects = 0
+let firstClick = true
 
 //create class to easily generate disks that are trackeable and manageable
 class Disk {
@@ -37,6 +34,8 @@ class Disk {
         thisDisk.setAttribute(`class`, `disk`)
         //make it unique also
         thisDisk.setAttribute(`id`, `disk${this.rank}`)
+        //set some inner text so that i can identify rank based on element selections
+        thisDisk.innerHTML = `<p>${this.rank}</p>`
         //set the width for appearance
         thisDisk.style.width = `${this.width}%`
         //set the height. I dont want it looking too tall when we dont have a lot of disks, so i set a conditional. this could backfire if someones view-port is extremely limited vertically, but i dont care right now
@@ -53,20 +52,23 @@ class Disk {
     }
 }
 
-//temporary object for testing
-// let testDiskElement = document.createElement(`div`)
-// testDiskElement.setAttribute(`class`, `disk`)
-// testDiskElement.style.width = `90%`
-// testDiskElement.style.height = `10%`
-// // testDiskElement.style.left = `4.5%`
-// // testDiskElement.style.bottom = `0`
-// // testDiskElement.style.backgroundColor = `crimson`
-// // testDiskElement.style.position = `absolute`
-// // testDiskElement.style.zIndex = `9`
-// document.querySelector(`#disk-container-1`).appendChild(testDiskElement)
-
+//generate the desired number of disks
 for (let i = 0; i < numberOfDisks; i++) {
     const aDisk = new Disk()
     aDisk.diskInitialization()
     aDisk.conjureDisk()
 }
+
+//add event listeners to each disk container. doesnt need to target disks, because they can only move the topmost disk anyway
+document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
+    if (firstClick === true) {
+        diskContainer.addEventListener(`click`, firstDiskClick())
+        firstClick = false
+    }
+    else if (firstClick === false) {
+        diskContainer.addEventListener(`click`, secondClick())
+        firstClick = true
+    }
+})
+
+//make function that allows for disk to be moved

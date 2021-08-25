@@ -83,3 +83,9 @@ for (let i = 0; i < numberOfDisks; i++) {
 document.getElementById(`disk1`).addEventListener('click', () => {
     console.log(`yeah   `)
 })
+
+document.querySelectorAll(`button`).forEach((button) => {
+    button.addEventListener(`click`, () => {
+        console.log(`click`)
+    })
+})

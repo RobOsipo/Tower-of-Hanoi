@@ -1,4 +1,4 @@
-let numberOfDisks = 3
+let numberOfDisks = 2
 let diskObjects = 0
 let firstClick = true
 let targetedContainer = null
@@ -59,19 +59,27 @@ for (let i = 0; i < numberOfDisks; i++) {
     aDisk.conjureDisk()
 }
 
-//add event listeners to each disk container. doesnt need to target disks, because they can only move the topmost disk anyway
-document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
-    if (firstClick === true) {
-        diskContainer.addEventListener(`click`, (ev) => {
-            ev.currentTarget.lastChild.classList.toggle(`selected`)
-            targetedContainer = ev.currentTarget
-        })
-        firstClick = false
-    }
-    else if (firstClick === false) {
-        diskContainer.addEventListener(`click`, (ev) => {
-            ev.currentTarget.appendChild(targetedContainer.lastChild)
-        })
-        firstClick = true
-    }
+// //add event listeners to each disk container. doesnt need to target disks, because they can only move the topmost disk anyway
+// document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
+//     diskContainer.addEventListener(`click`, (ev) => {
+//         console.log(`click `)
+//         if (firstClick === true) {
+//             ev.currentTarget.lastChild.classList.toggle(`selected`)
+//             targetedContainer = ev.currentTarget
+//             firstClick = false
+//             console.log(`first click`)
+//         }
+//         else if (firstClick === false) {
+//             ev.currentTarget.lastChild.classList.toggle(`selected`)
+//             ev.currentTarget.appendChild(targetedContainer.lastChild)
+//             firstClick = true
+//         }
+//     }
+//     )
+// }
+// )
+
+
+document.getElementById(`disk1`).addEventListener('click', () => {
+    console.log(`yeah   `)
 })

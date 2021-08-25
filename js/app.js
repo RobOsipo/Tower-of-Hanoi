@@ -65,13 +65,27 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
         // console.log(`click `)
         if (firstClick === true) {
             ev.currentTarget.lastChild.classList.toggle(`selected`)
-            targetedContainer = ev.currentTarget
+            firstTargetedContainer = ev.currentTarget
             firstClick = false
             // console.log(`first click`)
         }
         else if (firstClick === false) {
-            targetedContainer.lastChild.classList.toggle(`selected`)
-            ev.currentTarget.appendChild(targetedContainer.lastChild)
+            firstTargetedContainer.lastChild.classList.toggle(`selected`)
+            //check for disk in new container
+            if (ev.currentTarget.hasChildNodes() == true) {
+                console.log(`there is a disk here`)
+                //check to make sure the disk being moved is smaller than the one its being put on top of
+                if (ev.currentTarget.lastChild.innerHTML > firstTargetedContainer.lastChild.innerHTML) {
+                    ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
+                }
+                else {
+                    alert(`That is not a legal move.`)
+                }
+            }
+            //if no disk, send it
+            else {
+                ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
+            }
             firstClick = true
         }
     }

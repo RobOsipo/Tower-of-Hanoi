@@ -81,3 +81,7 @@ p {
 .selected {
     background-color: salmon;
 }
+
+h4 {
+    font-weight:normal;
+}

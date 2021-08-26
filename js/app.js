@@ -152,6 +152,10 @@ numberOfDisksSelector.onsubmit = (ev) => {
     if (isNaN(numberOfDisksSelected) === true) {
         alert(`Please enter a valid number. Must be an integer.`)
     }
+    //check for absurd numbers that make the game whack and also impossible in a human life-time
+    else if (numberOfDisksSelected > 64) {
+        alert(`Requests to make more than 64 disks will not be entertained for they cannot be completed by a human within the time span of universe's existance. Up to 64 is only allowed for historical significance.`)
+    }
     //if input is valid, use it and restart game.
     else {
         numberOfDisks = numberOfDisksSelected

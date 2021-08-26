@@ -89,6 +89,7 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
                     ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
                     updateMoves()
                 }
+                else if (ev.currentTarget.lastChild.innerHTML === firstTargetedContainer.lastChild.innerHTML) {}
                 else {
                     alert(`That is not a legal move.`)
                 }

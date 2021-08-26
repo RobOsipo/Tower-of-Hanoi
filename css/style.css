@@ -85,3 +85,8 @@ p {
 h4 {
     font-weight:normal;
 }
+
+footer {
+    position: absolute;
+    bottom:0%;
+}

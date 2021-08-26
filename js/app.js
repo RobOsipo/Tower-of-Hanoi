@@ -3,6 +3,7 @@ let diskObjects = 0
 let firstClick = true
 let targetedContainer = null
 let movesMade = 0
+let optimalMoves = (Math.pow(2, numberOfDisks) - 1)
 
 //create class to easily generate disks that are trackeable and manageable
 class Disk {
@@ -86,6 +87,7 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
                 //check to make sure the disk being moved is smaller than the one its being put on top of
                 if (ev.currentTarget.lastChild.innerHTML > firstTargetedContainer.lastChild.innerHTML) {
                     ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
+                    updateMoves()
                 }
                 else {
                     alert(`That is not a legal move.`)
@@ -94,6 +96,7 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
             //if no disk, send it
             else {
                 ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
+                updateMoves()
             }
             checkWin()
             firstClick = true
@@ -103,8 +106,15 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
 }
 )
 
+function updateMoves() {
+    movesMade += 1
+    document.querySelector(`#moves-made`).innerHTML = `Your moves: ${movesMade}`
+}
+
 function checkWin () {
-    document.querySelector(`#disk-container-3`)
+    if (document.querySelector(`#disk-container-3`).childElementCount === numberOfDisks) {
+        alert(`You have successfully completed the puzzle. You took ${movesMade} moves to do so, ${movesMade - optimalMoves} more than necessary.`)
+    }
 }
 
 // document.getElementById(`disk1`).addEventListener('click', () => {

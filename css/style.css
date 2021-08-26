@@ -1,10 +1,7 @@
 html, body {
     height: 100%;
     width: 100%;
-}
-
-#game-container {
-    /* display: contents; */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -20,12 +17,17 @@ button {
     /* display: inline-block; */
     margin: 0 auto;
     cursor: pointer;
+    width: 32vh;
+    text-align: center;
+    display: block;
 }
 
 .rod-container {
     background-color: aquamarine;
     height: 50vh;
-    width: 30vw;
+    width: 32vw;
+    margin: 0;
+    padding: 0;
     display: inline-block;
     z-index: 0;
     position: relative;

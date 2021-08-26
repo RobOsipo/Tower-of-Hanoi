@@ -4,6 +4,7 @@ let firstClick = true
 let targetedContainer = null
 let movesMade = 0
 let optimalMoves = (Math.pow(2, numberOfDisks) - 1)
+let numberOfDisks2 = numberOfDisks
 
 //create class to easily generate disks that are trackeable and manageable
 class Disk {
@@ -113,8 +114,10 @@ function updateMoves() {
 }
 
 function checkWin () {
-    if (document.querySelector(`#disk-container-3`).childElementCount === numberOfDisks) {
+    if (document.querySelector(`#disk-container-3`).childElementCount === numberOfDisks2) {
         alert(`You have successfully completed the puzzle. You took ${movesMade} moves to do so, ${movesMade - optimalMoves} more than necessary.`)
+        // add to the number of disks so that the check win wont pop off more than once if they keep playgin around with the disks.
+        numberOfDisks2 += 1
     }
 }
 
@@ -138,5 +141,6 @@ function restartGame() {
     firstClick = true
     targetedContainer = null
     movesMade = 0
+    numberOfDisks2 = numberOfDisks
     startPuzzle()
 }

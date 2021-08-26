@@ -9,10 +9,20 @@
     <script src="js/app.js" defer></script>
 </head>
 <body>
-    <h1>Tower of Hanoi</h1>
-    <h3 class="move-counter" id="moves-made">Your moves: 0</h3>
-    <h3 class="move-counter" id="moves-goal">Goal: 7</h3>
-
+    <div class="top-of-page">
+        <div class="inside-top-of-page">
+            <h1>Tower of Hanoi</h1>
+            <form id="number-of-disks">
+                <input type="text" value="Number of Disks" id="number-of-disks-text-box">
+                <button type="submit" id="submit-button">Make Puzzle</button>
+            </form>
+            <button id="restart-puzzle">Restart Puzzle</button>
+        </div>
+        <div class="inside-top-of-page" id="moves">
+            <h3 class="move-counter" id="moves-made">Your moves: 0</h3>
+            <h3 class="move-counter" id="moves-goal">Goal: 7</h3>
+        </div>
+    </div>
     <div id="game-container">
         <div class="rod-container" id="rod1-container">
             <div class="rod" id="rod1"></div>
@@ -29,7 +39,6 @@
             <div class="disk-container" id="disk-container-3"></div>
             <h3>3</h3>
         </div>
-        <button>Restart Puzzle</button>
     </div>
 
 </body>

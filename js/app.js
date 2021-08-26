@@ -144,3 +144,15 @@ function restartGame() {
     numberOfDisks2 = numberOfDisks
     startPuzzle()
 }
+
+const numberOfDisksSelector = document.querySelector(`#number-of-disks`)
+numberOfDisksSelector.onsubmit = (ev) => {
+    ev.preventDefault()
+    const numberOfDisksSelected = parseInt(document.querySelector(`#number-of-disks-text-box`).value, 10)
+    if (isNaN(numberOfDisksSelected) === true) {
+        alert(`Please enter a valid number. Must be an integer.`)
+    }
+    else {
+        alert(`${numberOfDisksSelected}`)
+    }
+}

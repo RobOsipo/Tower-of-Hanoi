@@ -13,13 +13,35 @@ h3 {
     text-align: center;
 }
 
-button {
+button{
     /* display: inline-block; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
     cursor: pointer;
-    width: 32vh;
+    /* width: 32vh; */
     text-align: center;
+    /* display: block; */
+}
+
+#restart-puzzle {
     display: block;
+}
+
+#moves {
+    text-align: right;
+    /* float: right; */
+    position: absolute;
+    right: 10%;
+    bottom: 0;
+    text-align: center;
+}
+
+.top-of-page {
+    position: relative;
+    margin-bottom: 5%;
+}
+
+.inside-top-of-page {
+    display: inline-block;
 }
 
 .rod-container {
@@ -74,8 +96,4 @@ p {
 
 .selected {
     background-color: salmon;
-}
-
-.move-counter {
-    text-align: left;
 }

@@ -136,6 +136,7 @@ function restartGame() {
     firstClick = true
     targetedContainer = null
     movesMade = 0
+    document.querySelector(`#moves-made`).innerHTML = `Your moves: 0`
     numberOfDisks2 = numberOfDisks
     //remake disks
     startPuzzle()

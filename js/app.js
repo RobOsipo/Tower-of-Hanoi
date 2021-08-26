@@ -3,7 +3,7 @@ let diskObjects = 0
 let firstClick = true
 let targetedContainer = null
 let movesMade = 0
-let optimalMoves = (Math.pow(2, numberOfDisks) - 1)
+let optimalMoves = 7
 let numberOfDisks2 = numberOfDisks
 
 //create class to easily generate disks that are trackeable and manageable
@@ -146,12 +146,17 @@ const numberOfDisksSelector = document.querySelector(`#number-of-disks`)
 numberOfDisksSelector.onsubmit = (ev) => {
     //prevent default
     ev.preventDefault()
+    //take input from form and coerce into a number
     const numberOfDisksSelected = parseInt(document.querySelector(`#number-of-disks-text-box`).value, 10)
+    //check if the input was not a valid input (a non-integer)
     if (isNaN(numberOfDisksSelected) === true) {
         alert(`Please enter a valid number. Must be an integer.`)
     }
+    //if input is valid, use it and restart game.
     else {
         numberOfDisks = numberOfDisksSelected
+        optimalMoves = (Math.pow(2, numberOfDisks) - 1)
+        document.querySelector(`#moves-goal`).innerHTML = `Goal: ${optimalMoves}`
         restartGame()
     }
 }

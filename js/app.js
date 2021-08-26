@@ -108,51 +108,50 @@ document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
 }
 )
 
+//make a function that updates the move counter
 function updateMoves() {
     movesMade += 1
     document.querySelector(`#moves-made`).innerHTML = `Your moves: ${movesMade}`
 }
 
+//function that checks for win condition after every move
 function checkWin () {
     if (document.querySelector(`#disk-container-3`).childElementCount === numberOfDisks2) {
-        alert(`You have successfully completed the puzzle. You took ${movesMade} moves to do so, ${movesMade - optimalMoves} more than necessary.`)
+        alert(`You have successfully completed the puzzle. You took ${movesMade} moves to do so, ${movesMade - optimalMoves} more than necessary. Feel free to keep moving the disks around.`)
         // add to the number of disks so that the check win wont pop off more than once if they keep playgin around with the disks.
         numberOfDisks2 += 1
     }
 }
 
-// document.getElementById(`disk1`).addEventListener('click', () => {
-//     console.log(`yeah   `)
-// })
-
-// document.querySelectorAll(`button`).forEach((button) => {
-//     button.addEventListener(`click`, () => {
-//         console.log(`click`)
-//     })
-// })
-
-document.querySelector(`button`).addEventListener(`click`, restartGame)
+//function to restart puzzle attached to the button
+document.querySelector(`#restart-puzzle`).addEventListener(`click`, restartGame)
+//the actual function
 function restartGame() {
+    //rather than moving and reordering disks, just delete them all and remake them using already made functions
     document.querySelectorAll(`.disk`).forEach((disk) => {
         disk.remove()
     })
-    numberOfDisks = 3
+    //reset starting conditions
     diskObjects = 0
     firstClick = true
     targetedContainer = null
     movesMade = 0
     numberOfDisks2 = numberOfDisks
+    //remake disks
     startPuzzle()
 }
 
+//let user decide how many disks with this form
 const numberOfDisksSelector = document.querySelector(`#number-of-disks`)
 numberOfDisksSelector.onsubmit = (ev) => {
+    //prevent default
     ev.preventDefault()
     const numberOfDisksSelected = parseInt(document.querySelector(`#number-of-disks-text-box`).value, 10)
     if (isNaN(numberOfDisksSelected) === true) {
         alert(`Please enter a valid number. Must be an integer.`)
     }
     else {
-        alert(`${numberOfDisksSelected}`)
+        numberOfDisks = numberOfDisksSelected
+        restartGame()
     }
 }

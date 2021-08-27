@@ -6,6 +6,7 @@ A browser-based interation of the classic puzzle, Tower of Hanoi.
 As this the project is browser-based, it can be accessed at <https://byerspn.github.io/Tower-of-Hanoi>.
 
 ## How to play
+The goal of the puzzle is to move all the disks on the starting rod to the final rod, while taking care to only move one disk at a time and never placing a larger disk on top of a smaller disk.
 To interact with the puzzle as it appears, click within the space of the rod (disk-container) that has the disk you would like to move, and then click within the space of the rod (disk-container) you would like to move it to. 
 ![.gif image showing process described above.](https://i.imgur.com/oXSOZVE.gif)
 

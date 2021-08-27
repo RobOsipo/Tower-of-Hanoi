@@ -1,7 +1,7 @@
 let numberOfDisks = 3
 let diskObjects = 0
 let firstClick = true
-let targetedContainer = null
+let firstTargetedDisk = null
 let movesMade = 0
 let optimalMoves = 7
 let numberOfDisks2 = numberOfDisks
@@ -14,30 +14,30 @@ const gameFunctions = {
             //mark the selected disk so the user knows something happened
             ev.currentTarget.lastChild.classList.toggle(`selected`)
             //mark the selection in the code, so that the next click can actually perform the movement
-            firstTargetedContainer = ev.currentTarget
+            firstTargetedDisk = ev.currentTarget.lastChild
             //tell the code that the first click has now been made
             firstClick = false
             // console.log(`first click`)
         }
         else if (firstClick === false) {
             //regardless of the outcome here, the selected disk should no longer be selected
-            firstTargetedContainer.lastChild.classList.toggle(`selected`)
+            firstTargetedDisk.classList.toggle(`selected`)
             //check for disk in new container
             if (ev.currentTarget.hasChildNodes() == true) {
                 // console.log(`there is a disk here`)
                 //check to make sure the disk being moved is smaller than the one its being put on top of
-                if (ev.currentTarget.lastChild.innerHTML > firstTargetedContainer.lastChild.innerHTML) {
-                    ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
+                if (ev.currentTarget.lastChild.innerHTML > firstTargetedDisk.innerHTML) {
+                    ev.currentTarget.appendChild(firstTargetedDisk)
                     gameFunctions.updateMoves()
                 }
-                else if (ev.currentTarget.lastChild.innerHTML === firstTargetedContainer.lastChild.innerHTML) {}
+                else if (ev.currentTarget.lastChild.innerHTML === firstTargetedDisk.innerHTML) {}
                 else {
                     alert(`That is not a legal move.`)
                 }
             }
             //if no disk, send it
             else {
-                ev.currentTarget.appendChild(firstTargetedContainer.lastChild)
+                ev.currentTarget.appendChild(firstTargetedDisk)
                 gameFunctions.updateMoves()
             }
             gameFunctions.checkWin()
@@ -73,7 +73,7 @@ const gameFunctions = {
         //reset starting conditions
         diskObjects = 0
         firstClick = true
-        targetedContainer = null
+        firstTargetedDisk = null
         movesMade = 0
         document.querySelector(`#moves-made`).innerHTML = `Your moves: 0`
         numberOfDisks2 = numberOfDisks
@@ -101,8 +101,13 @@ const gameFunctions = {
         movesMade += 1
         document.querySelector(`#moves-made`).innerHTML = `Your moves: ${movesMade}`
     },
+    //show potential move. append disk early, but not permanently
+    diskContainerHovered: (ev) => {
+        if (firstClick === false) {
+        ev.currentTarget.appendChild(firstTargetedDisk)
+        }
+    },
 }
-
 
 //create class to easily generate disks that are trackeable and manageable
 class Disk {
@@ -167,3 +172,7 @@ document.querySelector(`#restart-puzzle`).addEventListener(`click`, gameFunction
 //let user decide how many disks with this form
 const numberOfDisksSelector = document.querySelector(`#number-of-disks`)
 numberOfDisksSelector.onsubmit = gameFunctions.diskSelection
+
+document.querySelectorAll(`.disk-container`).forEach((diskContainer) => {
+    diskContainer.addEventListener(`mouseenter`, gameFunctions.diskContainerHovered)
+})

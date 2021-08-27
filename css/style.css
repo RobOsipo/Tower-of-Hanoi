@@ -88,5 +88,15 @@ h4 {
 
 footer {
     position: absolute;
-    bottom:0%;
+    bottom: 0;
+}
+
+#footer-links {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.footer-link {
+    display: inline;
+    padding: 0px 2vw 0px 0vw;
 }
